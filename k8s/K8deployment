@@ -1,0 +1,77 @@
+kubectl apply -f k8s/javaprogram-deployment.yaml
+kubectl apply -f k8s/javaprogram-service.yaml
+
+# 1. Check all pods
+kubectl get pods
+
+# 2. Check pods with more details
+kubectl get pods -o wide
+
+# 3. Check deployment
+kubectl get deployment
+
+# 4. Check service
+kubectl get service
+
+# 5. Describe pod
+kubectl describe pod <pod-name>
+
+# 6. Check pod logs
+kubectl logs <pod-name>
+
+# 7. Follow live logs
+kubectl logs -f <pod-name>
+
+# 8. Check previous container logs
+kubectl logs <pod-name> --previous
+
+# 9. Check deployment details
+kubectl describe deployment <deployment-name>
+
+# 10. Check service details
+kubectl describe service <service-name>
+
+# 11. Check Kubernetes events
+kubectl get events --sort-by=.lastTimestamp
+
+# 12. Check nodes
+kubectl get nodes
+
+# 13. Check node details
+kubectl describe node <node-name>
+
+# 14. Check everything in current namespace
+kubectl get all
+
+# 15. Check pod environment/config
+kubectl exec -it <pod-name> -- env
+
+# 16. Enter inside container
+kubectl exec -it <pod-name> -- /bin/sh
+
+# 17. Restart deployment
+kubectl rollout restart deployment <deployment-name>
+
+# 18. Check rollout status
+kubectl rollout status deployment <deployment-name>
+
+# 19. Check rollout history
+kubectl rollout history deployment <deployment-name>
+
+# 20. Rollback deployment
+kubectl rollout undo deployment <deployment-name>
+
+# 21. Check resource usage
+kubectl top pods
+
+# 22. Check node resource usage
+kubectl top nodes
+
+# 23. Check namespace
+kubectl get namespaces
+
+# 24. Check ConfigMaps
+kubectl get configmap
+
+# 25. Check Secrets
+kubectl get secrets
