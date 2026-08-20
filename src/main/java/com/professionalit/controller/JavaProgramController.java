@@ -43,7 +43,7 @@ public class JavaProgramController {
 						Collectors.collectingAndThen(Collectors.toList(),
 								list -> list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
 										.skip(1).findFirst())));
-
+		System.out.println(result);
 		return ResponseEntity.ok(result);
 	}
 
