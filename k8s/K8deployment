@@ -61,14 +61,20 @@ kubectl exec -it <pod-name> -- /bin/sh
 # 17. Restart deployment
 kubectl rollout restart deployment <deployment-name>
 
+
 # 18. Check rollout status
 kubectl rollout status deployment <deployment-name>
 
 # 19. Check rollout history
 kubectl rollout history deployment <deployment-name>
 
+kubectl rollout history deployment/java-program -n java-program
+
 # 20. Rollback deployment
 kubectl rollout undo deployment <deployment-name>
+kubectl rollout undo deployment/java-program --to-revision=2 -n java-program
+
+
 
 # 21. Check resource usage
 kubectl top pods
