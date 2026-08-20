@@ -8,11 +8,13 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.professionalit.dto.Employee;
 
 @RestController
+@RequestMapping("/api")
 public class JavaProgramController {
 
 	@GetMapping("/Java8-second-highest-salary-number")
@@ -26,7 +28,7 @@ public class JavaProgramController {
 		return ResponseEntity.ok(secondHighest);
 	}
 
-	@GetMapping("/Java8SecondHighestSalaryDemo")
+	@GetMapping("/Java8-second-highest--salary-object")
 	public ResponseEntity<Map<String, Optional<Employee>>> getSecondHighestSalary() {
 
 		List<Employee> employees = List.of(new Employee(1, "Amit", "IT", 80000), new Employee(2, "Rahul", "IT", 90000),
