@@ -1,20 +1,29 @@
+git clone https://github.com/manish2802/Java_Program_K8.git
+cd Java_Program_K8
+kubectl apply -f k8s/namespace.yaml -n java-program
+kubectl apply -f k8s/javaprogram-deployment.yaml -n java-program
+kubectl apply -f k8s/javaprogram-service.yaml -n java-program
+kubectl get all -n java-program
+
+
+
 kubectl apply -f k8s/javaprogram-deployment.yaml
 kubectl apply -f k8s/javaprogram-service.yaml
 
 # 1. Check all pods
-kubectl get pods
+kubectl get pods -n java-program
 
 # 2. Check pods with more details
-kubectl get pods -o wide
+kubectl get pods -o wide -n java-program
 
 # 3. Check deployment
-kubectl get deployment
+kubectl get deployment -n java-program
 
 # 4. Check service
-kubectl get service
+kubectl get service -n java-program
 
 # 5. Describe pod
-kubectl describe pod <pod-name>
+kubectl describe pod <pod-name> 
 
 # 6. Check pod logs
 kubectl logs <pod-name>
