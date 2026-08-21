@@ -62,8 +62,11 @@ pipeline {
         stage('Kubernetes Deploy') {
             steps {
                 sh '''
+                    kubectl apply -f k8s/
+                    kubectl get deployments   
                     kubectl set image deployment/java-program \
-                    java-program=${IMAGE_NAME}:${IMAGE_TAG}
+                    java-program=${IMAGE_NAME}:${IMAGE_TAG} 
+                    kubectl rollout status deployment/java-program
                 '''
             }
         }
