@@ -1,0 +1,47 @@
+kubectl get nodes
+
+ls -l /root/.kube/config
+
+kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}'
+
+docker volume create jenkins_home
+
+docker volume ls
+
+docker stop jenkins 2>/dev/null || true
+docker rm jenkins 2>/dev/null || true
+
+
+docker run -d \
+  --name jenkins \
+  --user root \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v jenkins_home:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /root/.kube:/root/.kube:ro \
+  jenkins/jenkins:lts
+  
+  docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+  
+  
+  docker exec -u root -it jenkins bash
+  
+  
+  apt-get update
+  apt-get install -y maven
+  mvn --version
+  
+  apt-get install -y docker.io
+  docker --version
+  
+  apt-get install -y curl
+  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  kubectl version --client
+  
+  ls -l /root/.kube/config
+  kubectl config view
+  kubectl config current-context
+  kubectl get nodes
+  

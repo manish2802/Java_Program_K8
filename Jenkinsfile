@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'manish28/java_program_k8'
-        IMAGE_TAG  = "${BUILD_NUMBER}"
+        IMAGE_TAG  = 'latest'
     }
 
     stages {
@@ -66,6 +66,7 @@ pipeline {
                     kubectl get deployments   
                     kubectl set image deployment/java-program \
                     java-program=${IMAGE_NAME}:${IMAGE_TAG} 
+                    kubectl rollout restart deployment/java-program
                     kubectl rollout status deployment/java-program
                 '''
             }

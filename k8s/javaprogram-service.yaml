@@ -1,20 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: java-program
+  name: java-program-service
 spec:
-  replicas: 2
   selector:
-    matchLabels:
-      app: java-program
-  template:
-    metadata:
-      labels:
-        app: java-program
-    spec:
-      containers:
-        - name: java-program
-          image: manish28/java_program_k8:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
+    app: java-program
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort
