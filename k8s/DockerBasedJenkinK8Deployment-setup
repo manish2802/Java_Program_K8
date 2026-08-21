@@ -45,3 +45,12 @@ docker run -d \
   kubectl config current-context
   kubectl get nodes
   
+  
+  
+  
+docker exec jenkins java -version
+docker exec jenkins mvn --version
+docker exec jenkins docker version
+docker exec jenkins kubectl version --client
+docker exec jenkins kubectl get nodes
+  
