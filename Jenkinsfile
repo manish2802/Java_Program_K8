@@ -61,13 +61,33 @@ pipeline {
 
         stage('Kubernetes Deploy') {
             steps {
-                sh '''
-                    kubectl apply -f k8s/
-                    kubectl get deployments -n java-program
-                    kubectl rollout restart deployment/java-program -n java-program
-                    kubectl rollout status deployment/java-program -n java-program
-                    kubectl get pods -n java-program -o wide
-                   '''
+               sh '''
+            echo "=== Apply Kubernetes Resources ==="
+            kubectl apply -f k8s/
+
+            echo "=== Namespace ==="
+            kubectl get namespace java-program
+
+            echo "=== Deployments ==="
+            kubectl get deployments -n java-program
+
+            echo "=== Pods Before Rollout ==="
+            kubectl get pods -n java-program -o wide
+
+            echo "=== Rolling Restart ==="
+            kubectl rollout restart deployment/java-program \
+                -n java-program
+
+            echo "=== Waiting for Rollout ==="
+            kubectl rollout status deployment/java-program \
+                -n java-program
+
+            echo "=== Final Pods ==="
+            kubectl get pods -n java-program -o wide
+
+            echo "=== Services ==="
+            kubectl get svc -n java-program
+        '''
             }
         }
     }
