@@ -16,18 +16,27 @@ pipeline {
             }
         }
 
-        stage('Maven Build') {
-            steps {
-                  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-                  export PATH=$JAVA_HOME/bin:$PATH
+      
+   stage('Maven Build') {
+     steps {
+         sh '''
+             export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+             export PATH=$JAVA_HOME/bin:$PATH
+             
+             echo "===== JAVA =====" echo "
+             JAVA_HOME=$JAVA_HOME"
+             java -version 
+             javac -version
+             
+             echo "===== MAVEN =====" 
+             mvn -version
 
-                 echo "JAVA_HOME=$JAVA_HOME"
-                 java -version
-                 javac -version
-                 mvn -version
-                sh 'mvn clean package -DskipTests'
-            }
-        }
+             mvn clean package -DskipTests
+         '''
+      }
+  }
+
+
 
         stage('Docker Build') {
             steps {
