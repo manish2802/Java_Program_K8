@@ -1,0 +1,76 @@
+```groovy
+pipeline {
+
+    agent any
+
+    environment {
+        IMAGE_NAME = 'manish28/java_program_k8'
+        IMAGE_TAG  = 'latest'
+        CONTAINER_NAME = 'java-program'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Maven Build') {
+            steps {
+                sh '''
+                    mvn clean package -DskipTests
+                '''
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh '''
+                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                '''
+            }
+        }
+
+        stage('Docker Login') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login \
+                            -u "$DOCKER_USERNAME" \
+                            --password-stdin
+                    '''
+                }
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                sh '''
+                    docker push ${IMAGE_NAME}:${IMAGE_TAG}
+                '''
+            }
+        }
+
+        stage('Docker Run') {
+            steps {
+                sh '''
+                    docker rm -f ${CONTAINER_NAME} 2>/dev/null || true
+
+                    docker run -d \
+                        --name ${CONTAINER_NAME} \
+                        -p 8080:8080 \
+                        ${IMAGE_NAME}:${IMAGE_TAG}
+                '''
+            }
+        }
+    }
+}
+```
