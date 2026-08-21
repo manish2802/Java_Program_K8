@@ -17,6 +17,12 @@ import com.professionalit.dto.Employee;
 @RequestMapping("/api")
 public class JavaProgramController {
 
+	@GetMapping("/hello")
+	public ResponseEntity<String> hello() {
+
+		return ResponseEntity.ok("Welcome");
+	}
+
 	@GetMapping("/Java8-second-highest-salary-number")
 	public ResponseEntity<Integer> secondHighestSalaryNumber() {
 		List<Integer> salaries = List.of(50000, 80000, 90000, 70000);
