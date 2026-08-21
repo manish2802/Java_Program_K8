@@ -12,7 +12,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/manish2802/Java_Program_K8.git'
+                url: 'https://github.com/manish2802/Java_Program_K8.git'
             }
         }
 
@@ -20,9 +20,6 @@ pipeline {
    stage('Maven Build') {
      steps {
          sh '''
-             export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-             export PATH=$JAVA_HOME/bin:$PATH
-             
              echo "===== JAVA =====" echo "
              JAVA_HOME=$JAVA_HOME"
              java -version 
