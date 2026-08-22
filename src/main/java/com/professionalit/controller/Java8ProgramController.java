@@ -15,7 +15,7 @@ import com.professionalit.dto.Employee;
 
 @RestController
 @RequestMapping("/api")
-public class JavaProgramController {
+public class Java8ProgramController {
 
 	@GetMapping("/hello")
 	public ResponseEntity<String> hello() {
