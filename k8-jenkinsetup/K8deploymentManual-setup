@@ -7,6 +7,7 @@ apt install openjdk-17-jre-headless  # version 17.0.19+10-1~24.04.2
  
  docker build -t manish28/java_program_k8:latest .
  
+ 
  # Run docker image
  docker run --name java-program -p 8082:8080 manish28/java_program_k8:latest
 
@@ -16,7 +17,7 @@ apt install openjdk-17-jre-headless  # version 17.0.19+10-1~24.04.2
 
 
 
-
+#Kubernets
 git clone https://github.com/manish2802/Java_Program_K8.git
 cd Java_Program_K8
 kubectl apply -f k8s/namespace.yaml -n java-program
@@ -29,6 +30,9 @@ kubectl get node
 kubectl get pod -o wide -n java-program
 
 
+
+
+#troblueshoot
 # 1. Check all pods
 kubectl get pods -n java-program
 

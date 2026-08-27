@@ -5,17 +5,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.professionalit.dto.Employee;
 
 @RestController
 @RequestMapping("/api")
 public class Java8ProgramController {
+
+	private static final Logger log = LoggerFactory.getLogger(Java8ProgramController.class);
 
 	@GetMapping("/hello")
 	public ResponseEntity<String> hello() {
@@ -29,8 +31,8 @@ public class Java8ProgramController {
 
 		Integer secondHighest = salaries.stream().distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst()
 				.orElse(null);
-
 		System.out.println(secondHighest);
+		log.info("secondHighest: " + secondHighest);
 		return ResponseEntity.ok(secondHighest);
 	}
 
@@ -52,6 +54,7 @@ public class Java8ProgramController {
 								list -> list.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
 										.skip(1).findFirst())));
 		System.out.println(result);
+		log.info("secondHighest Object: " + result);
 		return ResponseEntity.ok(result);
 	}
 
