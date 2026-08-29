@@ -23,8 +23,6 @@ docker run -d \
   jenkins/jenkins:lts
   
   docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
-  
-  
   docker exec -u root -it jenkins bash
   
   
