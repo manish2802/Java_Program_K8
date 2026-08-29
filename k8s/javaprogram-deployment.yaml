@@ -19,7 +19,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
-      env:
+          env:
             - name: OTEL_SERVICE_NAME
               value: "java-program"
 
