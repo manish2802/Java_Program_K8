@@ -8,6 +8,8 @@ public class JavaProgramK8Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JavaProgramK8Application.class, args);
+		
+		
 	}
 
 }
