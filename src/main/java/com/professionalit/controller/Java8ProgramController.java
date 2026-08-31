@@ -21,7 +21,6 @@ public class Java8ProgramController {
 
 	@GetMapping("/hello0")
 	public ResponseEntity<String> hello() {
-
 		return ResponseEntity.ok("Welcome");
 	}
 
