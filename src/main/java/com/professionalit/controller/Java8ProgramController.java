@@ -19,7 +19,7 @@ public class Java8ProgramController {
 
 	private static final Logger log = LoggerFactory.getLogger(Java8ProgramController.class);
 
-	@GetMapping("/hello")
+	@GetMapping("/hello0")
 	public ResponseEntity<String> hello() {
 
 		return ResponseEntity.ok("Welcome");
